@@ -1,0 +1,25 @@
+import cv2
+import numpy as np
+
+def preprocessing(img):
+    #Convert to gray
+    img = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+
+    #Contrast Limited Adaptive Histogram Equalization
+    clahe = cv2.createCLAHE(clipLimit=1.0, tileGridSize=(1,1))
+    img = clahe.apply(img)
+
+    #Apply threshold to get image with only black and white - binarization
+    #blur = cv2.GaussianBlur(img,(5,5),0) #Gaussian Filtering
+    #ret3,img = cv2.threshold(blur,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
+    th, img = cv2.threshold(img, 127, 255, cv2.THRESH_BINARY_INV | cv2.THRESH_OTSU)
+
+    #Apply dilatation and erosion to remove some noise
+    kernel = np.ones((1,1), np.uint8)
+    img = cv2.erode(img, kernel, iterations=1)
+    img = cv2.dilate(img, kernel, iterations=1)
+
+    #ewentualna dodatkowa filtracja
+    img = cv2.GaussianBlur(img,(1,1),0)
+
+    return img
