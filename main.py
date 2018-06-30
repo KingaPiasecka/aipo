@@ -1,10 +1,10 @@
 import cv2
-
+#  https://docs.google.com/document/d/1FYA7sAsL-DHlWLmTiyl0b983c0Su3eKj9iDBDHHe-5k/edit?usp=sharing
 from segmentationAndScaling import segment_and_scale
 from imagePreprocessing import preprocessing
 from rotation import rotate, rotate2
 from skeletonisation import skeletonize
-from secondMethod import secondMethod, thirdMethod
+from characteristic import secondMethod, thirdMethod
 import numpy as np
 
 # wczytanie obrazu
@@ -25,7 +25,8 @@ cv2.imshow('img', img)
 cv2.moveWindow('img', 90, 90)
 
 skel = skeletonize(img)
-m2 = thirdMethod(skel,9)
+#m2 = secondMethod(skel) # to cos srednio dziala
+m2 = thirdMethod(skel,3)
 print(m2)
 cv2.imshow('skel', skel)
 cv2.moveWindow('skel', 150, 90)
