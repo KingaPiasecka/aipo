@@ -18,7 +18,7 @@ knn.train(samples, cv2.ml.ROW_SAMPLE, responses)
 
 out = np.zeros(image.shape, np.uint8)
 
-segmentedImage, characters = segment(image)
+#segmentedImage, characters = segment(image)
 # Rozmiar obrazu po skalowaniu
 dim = 40
 # Rozmiar obszaru dla metody ekstrakcji cech
