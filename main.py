@@ -2,19 +2,21 @@ import cv2
 
 from segmentationAndScaling import segment_and_scale
 from imagePreprocessing import preprocessing
-from rotation import rotate
+from rotation import rotate, rotate2
 from skeletonisation import skeletonize
 import numpy as np
 
-image = cv2.imread('ocr4.png')
+# wczytanie obrazu
+image = cv2.imread('testowe.png')
+# Przygotowanie wstepne obrazu
 image = preprocessing(image)
-image = rotate(image)
-
-#show results
-cv2.imshow('rotated', image)
-
+image = rotate2(image)
+cv2.imshow('Obraz po obrobce wstepnej', image)
 
 ##############################
+
+# Segmentacja obrazu na litery
+# Skalowanie i szkieletyzacja liter
 
 characters = segment_and_scale(image)
 img = characters[0]
@@ -30,3 +32,8 @@ cv2.imwrite("skel.png", skel)
 
 cv2.waitKey()
 cv2.destroyAllWindows()
+
+##############################
+
+#Ekstrakcja wektorow cech z liter
+#Porownanie wektorow cech liter z wektorami cech probek treningowych
