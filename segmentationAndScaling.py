@@ -1,7 +1,7 @@
 import cv2
 
 
-def segment_and_scale(image):
+def segment(image):
     """
     :rtype: collections.list
     """
@@ -11,11 +11,14 @@ def segment_and_scale(image):
     for cnt in contours:
         if cv2.contourArea(cnt):
             [x, y, w, h] = cv2.boundingRect(cnt)
-
             if h:
-                # cv2.rectangle(im, (x, y), (x + w, y + h), (0, 0, 255), 2)
+                cv2.rectangle(image, (x, y), (x + w, y + h), 125, 1)
                 roi = image[y:y + h, x:x + w]
-                roismall = cv2.resize(roi, (10, 10))
                 characters.append(roi)
 
-    return characters
+    return image, characters
+
+
+def scale(image, dim):
+    roismall = cv2.resize(image, (dim, dim))
+    return  roismall

@@ -60,8 +60,8 @@ def firstMethod(img):
     vector.extend(bottom)
     vector.extend(left_side)
     vector.extend(right_side)
-    for k in range(0, len(vector)):
-        img[vector[k][0], vector[k][1]] = 125
+
+    return vector
 
 
 def surrounding(area, x, y):
@@ -211,3 +211,8 @@ def check_right_side(img):
 
 def adjacent_points(point1, point2):
     return (point1-1 == point2) or (point2-1 == point1)
+
+
+def fourthMethod(img):
+    roi = cv2.resize(img, (10, 10))
+    return roi.reshape((1, 100))

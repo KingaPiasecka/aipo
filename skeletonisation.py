@@ -1,5 +1,6 @@
 import numpy as np
 import scipy.ndimage.morphology as m
+from skimage import morphology
 
 def skeletonize(img):
     h1 = np.array([[0, 0, 0], [0, 1, 0], [1, 1, 1]], dtype=np.uint8)
@@ -23,4 +24,5 @@ def skeletonize(img):
             break
 
     img = img.astype(np.uint8) * 255
+    out = morphology.skeletonize(img > 0)
     return img
