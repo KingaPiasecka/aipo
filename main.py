@@ -85,3 +85,5 @@ np.savetxt('responses.data', responses)
 
 samplesData.close()
 responsesData.close()
+
+cv2.destroyAllWindows()
