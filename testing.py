@@ -6,19 +6,9 @@ from characteristic import thirdMethod, fourthMethod
 from segmentationAndScaling import scale, segment
 
 
-image = cv2.imread('Arial.png')
+image = cv2.imread('test3.bmp')
 image = preprocessing(image)
 
-samples = np.loadtxt('samples4.data', np.float32)
-responses = np.loadtxt('responses4.data', np.float32)
-responses = responses.reshape((responses.size, 1))
-
-knn = cv2.ml.KNearest_create()
-knn.train(samples, cv2.ml.ROW_SAMPLE, responses)
-
-out = np.zeros(image.shape, np.uint8)
-
-#segmentedImage, characters = segment(image)
 # Rozmiar obrazu po skalowaniu
 dim = 40
 # Rozmiar obszaru dla metody ekstrakcji cech
@@ -26,10 +16,20 @@ rec = 4
 fourthMethodOn = True
 if fourthMethodOn:
     rec = 10
+    samples = np.loadtxt('samples4.data', np.float32)
+    responses = np.loadtxt('responses4.data', np.float32)
+else:
+    samples = np.loadtxt('samples3.data', np.float32)
+    responses = np.loadtxt('responses3.data', np.float32)
 
+responses = responses.reshape((responses.size, 1))
 
-im = image
-_, contours, _ = cv2.findContours(im, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+knn = cv2.ml.KNearest_create()
+knn.train(samples, cv2.ml.ROW_SAMPLE, responses)
+
+out = np.zeros(image.shape, np.uint8)
+
+_, contours, _ = cv2.findContours(image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 for cnt in contours:
     if cv2.contourArea(cnt):
         [x, y, w, h] = cv2.boundingRect(cnt)
@@ -42,7 +42,6 @@ for cnt in contours:
                 vector = fourthMethod(ready)
             else:
                 vector = thirdMethod(ready, rec)
-
             vector = np.reshape(vector, (1, rec*rec))
             vector = np.float32(vector)
             ret, results, neighbours, dist = knn.findNearest(vector, 1)
