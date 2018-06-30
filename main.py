@@ -11,11 +11,11 @@ from characteristic import thirdMethod, fourthMethod
 import numpy as np
 
 # wczytanie obrazu
-image = cv2.imread('testowe.png')
+image = cv2.imread('Arial.png')
 image2 = image
 # Przygotowanie wstepne obrazu
 image = preprocessing(image)
-# image = rotate2(image)
+image = rotate2(image)
 # cv2.imshow('Obraz po obrobce wstepnej', image)
 
 ##############################
@@ -74,14 +74,14 @@ samples = np.float32(samples)
 responses = np.float32(responses)
 
 if fourthMethodOn:
-    samplesData = open('../samples4.data', 'ab')
-    responsesData = open('../responses4.data', 'ab')
+    samplesData = open('samples4.data', 'ab')
+    responsesData = open('responses4.data', 'ab')
 else:
-    samplesData = open('../samples3.data', 'ab')
-    responsesData = open('../responses3.data', 'ab')
+    samplesData = open('samples3.data', 'ab')
+    responsesData = open('responses3.data', 'ab')
 
-np.savetxt('samples.data', samples)
-np.savetxt('responses.data', responses)
+np.savetxt(samplesData, samples)
+np.savetxt(responsesData, responses)
 
 samplesData.close()
 responsesData.close()
