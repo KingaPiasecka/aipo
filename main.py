@@ -73,8 +73,12 @@ print "training complete"
 samples = np.float32(samples)
 responses = np.float32(responses)
 
-samplesData = open('../samples.data', 'ab')
-responsesData = open('../responses.data', 'ab')
+if fourthMethodOn:
+    samplesData = open('../samples4.data', 'ab')
+    responsesData = open('../responses4.data', 'ab')
+else:
+    samplesData = open('../samples3.data', 'ab')
+    responsesData = open('../responses3.data', 'ab')
 
 np.savetxt('samples.data', samples)
 np.savetxt('responses.data', responses)
