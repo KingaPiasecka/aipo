@@ -23,20 +23,15 @@ characters = segment_and_scale(image)
 img = characters[0]
 cv2.imshow('img', img)
 cv2.moveWindow('img', 90, 90)
-
-skel = skeletonize(img)
-#m2 = secondMethod(skel) # to cos srednio dziala
-m2 = thirdMethod(skel,3)
-print(m2)
-cv2.imshow('skel', skel)
-cv2.moveWindow('skel', 150, 90)
-cv2.imwrite("skel.png", skel)
+#
+# skel = skeletonize(img)
+# #m2 = secondMethod(skel) # to cos srednio dziala
+# m2 = thirdMethod(skel,3)
+# print(m2)
+# cv2.imshow('skel', skel)
+# cv2.moveWindow('skel', 150, 90)
+# cv2.imwrite("skel.png", skel)
 
 
 cv2.waitKey()
 cv2.destroyAllWindows()
-
-##############################
-
-#Ekstrakcja wektorow cech z liter
-#Porownanie wektorow cech liter z wektorami cech probek treningowych

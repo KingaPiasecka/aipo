@@ -13,8 +13,8 @@ def segment_and_scale(image):
             [x, y, w, h] = cv2.boundingRect(cnt)
 
             if h:
-                cv2.rectangle(im, (x, y), (x + w, y + h), (0, 0, 255), 2)
-                roi = im[y:y + h, x:x + w]
+                # cv2.rectangle(im, (x, y), (x + w, y + h), (0, 0, 255), 2)
+                roi = image[y:y + h, x:x + w]
                 roismall = cv2.resize(roi, (10, 10))
                 characters.append(roi)
 
