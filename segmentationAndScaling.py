@@ -9,7 +9,7 @@ def segment(image):
     _, contours, _ = cv2.findContours(im, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     characters = []
     for cnt in contours:
-        if cv2.contourArea(cnt):
+        if cv2.contourArea(cnt) > 50:
             [x, y, w, h] = cv2.boundingRect(cnt)
             if h:
                 cv2.rectangle(image, (x, y), (x + w, y + h), 125, 1)

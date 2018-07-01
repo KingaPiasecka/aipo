@@ -6,7 +6,7 @@ from characteristic import thirdMethod, fourthMethod
 from segmentationAndScaling import scale, segment
 
 
-image = cv2.imread('test3.bmp')
+image = cv2.imread('test1.bmp')
 image = preprocessing(image)
 
 # Rozmiar obrazu po skalowaniu
@@ -31,7 +31,7 @@ out = np.zeros(image.shape, np.uint8)
 
 _, contours, _ = cv2.findContours(image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 for cnt in contours:
-    if cv2.contourArea(cnt):
+    if cv2.contourArea(cnt) > 50:
         [x, y, w, h] = cv2.boundingRect(cnt)
         if h:
             cv2.rectangle(image, (x, y), (x + w, y + h), 125, 1)
@@ -49,6 +49,7 @@ for cnt in contours:
             cv2.putText(out, string, (x, y + h), 0, 1, (255, 255, 255))
 
 cv2.imshow('im', image)
-cv2.imshow('out', out)
+cv2.imwrite("test1IM.png", image)
+cv2.imwrite('test1OUT.png', out)
 cv2.waitKey(0)
 
