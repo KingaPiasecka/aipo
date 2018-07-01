@@ -11,7 +11,7 @@ from characteristic import thirdMethod, fourthMethod
 import numpy as np
 
 # wczytanie obrazu
-image = cv2.imread('ArialBold.png')
+image = cv2.imread('t4.png')
 image2 = image
 # Przygotowanie wstepne obrazu
 image = preprocessing(image)
@@ -29,7 +29,7 @@ dim = 40
 # Rozmiar obszaru dla metody ekstrakcji cech
 rec = 4
 
-fourthMethodOn = False
+fourthMethodOn = True
 
 if fourthMethodOn:
     rec = 10

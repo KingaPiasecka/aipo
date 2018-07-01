@@ -6,12 +6,13 @@ def segment(image):
     :rtype: collections.list
     """
     im = image
+    width, height = im.shape[:2]
     _, contours, _ = cv2.findContours(im, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     characters = []
     for cnt in contours:
-        if cv2.contourArea(cnt):
+        if cv2.contourArea(cnt) > 50:
             [x, y, w, h] = cv2.boundingRect(cnt)
-            if h:
+            if w < width and h < height:
                 cv2.rectangle(image, (x, y), (x + w, y + h), 125, 1)
                 roi = image[y:y + h, x:x + w]
                 characters.append(roi)
